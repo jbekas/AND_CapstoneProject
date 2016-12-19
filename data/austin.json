@@ -1,0 +1,42 @@
+[
+  {
+    "name":"ABGB",
+    "address":"123 Main St",
+    "taproom_hours":"F, Sa, Su: noon-10pm",
+    "tour_hours":"F, Sa, Su: every hour btwn noon-9pm",
+    "beer_list":[
+      {
+        "name":"beer 1",
+        "abv":4.75,
+        "ibu":26,
+        "description":"beer 1 description"
+      },
+      {
+        "name":"beer 2",
+        "abv":3.75,
+        "ibu":56,
+        "description":"beer 2 description"
+      }
+    ]
+  },
+  {
+    "name":"Hops and Grain",
+    "address":"321 Main St",
+    "taproom_hours":"F, Sa, Su: noon-10pm",
+    "tour_hours":"F, Sa, Su: every hour btwn noon-9pm",
+    "beer_list":[
+      {
+        "name":"beer 1",
+        "abv":4.75,
+        "ibu":26,
+        "description":"beer 1 description"
+      },
+      {
+        "name":"beer 2",
+        "abv":3.75,
+        "ibu":56,
+        "description":"beer 2 description"
+      }
+    ]
+  }
+]
