@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    style="@style/MyCardViewStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/brewery_logo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/brewery_image"
+            app:srcCompat="@drawable/beer_mug"/>
+
+        <TextView
+            android:id="@+id/brewery_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/brewery_logo"
+            android:layout_marginLeft="8dp"
+            tools:text="Brewery Name"/>
+
+        <TextView
+            android:id="@+id/brewery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/brewery_name"
+            android:layout_toEndOf="@id/brewery_logo"
+            android:layout_marginLeft="8dp"
+            tools:text="Address"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
