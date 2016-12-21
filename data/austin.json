@@ -3,9 +3,17 @@
     "id":1,
     "name":"ABGB",
     "address":"123 Main St",
-    "taproom_hours":"F, Sa, Su: noon-10pm",
-    "tour_hours":"F, Sa, Su: every hour btwn noon-9pm",
-    "beer_list":[
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78704",
+    "phone":"512.298.2242",
+    "taproomHours":"Sunday: 12pm – 10pm\nMonday: closed\nTuesday: 11:30am – 11pm\nWednesday: 11:30am – 11pm\nThursday: 11:30am – 11pm\nFriday: 11:30am – 12am\nSaturday: 12pm – 12am",
+    "tourHours":null,
+    "twitter":"@theabgb",
+    "logoUrl":"http://theabgb.com/wp-content/themes/theabgb/assets/images/logo-abgb-grunge.png",
+    "photoUrl":"https://media-cdn.tripadvisor.com/media/photo-s/06/c9/86/e5/the-abgb-austin-beer.jpg",
+    "beerList":[
       {
         "name":"beer 1",
         "abv":4.75,
@@ -23,10 +31,18 @@
   {
     "id":2,
     "name":"Hops and Grain",
-    "address":"321 Main St",
-    "taproom_hours":"F, Sa, Su: noon-10pm",
-    "tour_hours":"F, Sa, Su: every hour btwn noon-9pm",
-    "beer_list":[
+    "address":"507 Calles",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78702",
+    "phone":"512.914.2467",
+    "taproomHours":"7 days a week, 10am-10pm",
+    "tourHours":null,
+    "twitter":"@hopsandgrain",
+    "logoUrl":null,
+    "photoUrl":null,
+    "beerList":[
       {
         "name":"beer 1",
         "abv":4.75,
