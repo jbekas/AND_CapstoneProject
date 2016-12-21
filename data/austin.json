@@ -1,5 +1,6 @@
 [
   {
+    "id":1,
     "name":"ABGB",
     "address":"123 Main St",
     "taproom_hours":"F, Sa, Su: noon-10pm",
@@ -20,6 +21,7 @@
     ]
   },
   {
+    "id":2,
     "name":"Hops and Grain",
     "address":"321 Main St",
     "taproom_hours":"F, Sa, Su: noon-10pm",
