@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.redgeckotech.beerfinder.BreweryInfoApplication;
 import com.redgeckotech.beerfinder.Constants;
 import com.redgeckotech.beerfinder.R;
@@ -29,6 +30,8 @@ public class MainActivity extends BaseActivity
         ((BreweryInfoApplication) getApplicationContext()).getApplicationComponent().inject(this);
 
         ButterKnife.bind(this);
+
+        FirebaseCrash.report(new Exception("My first Android non-fatal error"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,6 +91,7 @@ public class MainActivity extends BaseActivity
 
             if (brewery != null) {
                 Intent intent = new Intent(this, BreweryDetailActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra(Constants.EXTRA_BREWERY, brewery);
                 startActivity(intent);
             } else {

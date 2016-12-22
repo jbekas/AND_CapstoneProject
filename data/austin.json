@@ -2,58 +2,132 @@
   {
     "id":1,
     "name":"ABGB",
-    "address":"123 Main St",
+    "address":"1305 W Oltorf St",
     "address2":null,
     "city":"Austin",
     "state":"TX",
     "postalCode":"78704",
+    "latitude":30.245355,
+    "longitude":-97.768505,
     "phone":"512.298.2242",
     "taproomHours":"Sunday: 12pm – 10pm\nMonday: closed\nTuesday: 11:30am – 11pm\nWednesday: 11:30am – 11pm\nThursday: 11:30am – 11pm\nFriday: 11:30am – 12am\nSaturday: 12pm – 12am",
     "tourHours":null,
+    "website":"http://theabgb.com/",
     "twitter":"@theabgb",
     "logoUrl":"http://theabgb.com/wp-content/themes/theabgb/assets/images/logo-abgb-grunge.png",
     "photoUrl":"https://media-cdn.tripadvisor.com/media/photo-s/06/c9/86/e5/the-abgb-austin-beer.jpg",
     "beerList":[
       {
-        "name":"beer 1",
-        "abv":4.75,
-        "ibu":26,
+        "name":"Superliner",
+        "type":"American IPA",
+        "style":"American IPA",
+        "abv":6.8,
+        "ibu":60,
         "description":"beer 1 description"
       },
       {
-        "name":"beer 2",
+        "name":"Big Mama Red",
+        "type":"Imperial Red Ale",
+        "style":"Imperial Red Ale",
         "abv":3.75,
         "ibu":56,
+        "description":"beer 2 description"
+      },
+      {
+        "name":"Day Trip Pale Ale",
+        "type":"American Pale Ale",
+        "style":"American Pale Ale",
+        "abv":5.5,
+        "ibu":39,
         "description":"beer 2 description"
       }
     ]
   },
   {
     "id":2,
-    "name":"Hops and Grain",
+    "name":"Hops and Grain Brewing",
     "address":"507 Calles",
     "address2":null,
     "city":"Austin",
     "state":"TX",
     "postalCode":"78702",
+    "latitude":30.2584157,
+    "longitude":-97.7118359,
     "phone":"512.914.2467",
     "taproomHours":"7 days a week, 10am-10pm",
     "tourHours":null,
+    "website":"http://hopsandgrain.com",
+    "twitter":"@hopsandgrain",
+    "logoUrl":null,
+    "photoUrl":"https://scontent-ort2-1.xx.fbcdn.net/v/t31.0-8/12719662_10153953401609288_7906958446780614657_o.jpg?oh=c86876824c0e96a4538d06f1b3078733&oe=58EDB47E",
+    "beerList":[
+      {
+        "name":"Greenhouse IPA",
+        "type":"American IPA",
+        "style":"American IPA",
+        "abv":7.6,
+        "ibu":55,
+        "description":"beer 1 description"
+      },
+      {
+        "name":"A Pale Mosaic",
+        "type":"American IPA",
+        "style":"American IPA",
+        "abv":5.93,
+        "ibu":60,
+        "description":"beer 2 description"
+      },
+      {
+        "name":"The One They Call Zoe",
+        "type":"Pale Lager",
+        "style":"Lager",
+        "abv":5.2,
+        "ibu":18,
+        "description":"beer 2 description"
+      }
+    ]
+  },
+  {
+    "id":3,
+    "name":"4th Tap Brewing Cooperative",
+    "address":"10615 Metric Blvd",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78758",
+    "latitude":30.3851408,
+    "longitude":-97.7118457,
+    "phone":"512.904.9817",
+    "taproomHours":"Mon – Thurs, 11am to 10pm\nFri – Sat, 11am to Midnight\nSunday, Noon to 10pm",
+    "tourHours":null,
+    "website":"http://www.4thtap.coop/",
     "twitter":"@hopsandgrain",
     "logoUrl":null,
     "photoUrl":null,
     "beerList":[
       {
-        "name":"beer 1",
-        "abv":4.75,
-        "ibu":26,
-        "description":"beer 1 description"
+        "name":"Sun Eater",
+        "type":"Sorghum Ale",
+        "style":"Gruit",
+        "abv":4.8,
+        "ibu":0,
+        "description":"A true son of Texas, this gruit is made with all native Texas ingredients. Sitting on a base of sorghum cane juice and dark brown sugar, Sun Eater is bittered with rosemary and infused with dried lemon peel. It is highly-attenuated for a dry and refreshing finish similar to that of a cider or champagne. This gruit was designed to beat back that Tyrant Sun of hot Texas weather, which is practically year-round, so grab a 6-pack and head out into the world!"
       },
       {
-        "name":"beer 2",
-        "abv":3.75,
-        "ibu":56,
-        "description":"beer 2 description"
+        "name":"Renewal",
+        "type":"Wheat Ale",
+        "style":"Wheat Ale",
+        "abv":5.8,
+        "ibu":15,
+        "description":"Our crisp, Magnum-hopped wheat beer brewed with tamarind fruit for a tart and pleasing finish. Renewal appeals to those searching for that subtle balance between sour and refreshing. Specifically formulated to meet all your river-floating and porch-drinking needs! Cheers!"
+      },
+      {
+        "name":"Long Walk",
+        "type":"Grapefruit IPA",
+        "style":"American IPA",
+        "abv":7.0,
+        "ibu":57,
+        "description":"Our crisp, Magnum-hopped wheat beer brewed with tamarind fruit for a tart and pleasing finish. Renewal appeals to those searching for that subtle balance between sour and refreshing. Specifically formulated to meet all your river-floating and porch-drinking needs! Cheers!"
       }
     ]
   }

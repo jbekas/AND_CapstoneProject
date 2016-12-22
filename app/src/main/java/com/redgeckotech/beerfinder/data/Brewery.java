@@ -25,12 +25,15 @@ public class Brewery implements Parcelable {
     private String city;
     private String state;
     private String postalCode;
+    private double latitude;
+    private double longitude;
     private String phone;
     private String taproomHours;
     private String tourHours;
     private List<Beer> beerList;
     private String logoUrl;
     private String photoUrl;
+    private String website;
     private String twitter;
 
     public Brewery() {
@@ -45,6 +48,8 @@ public class Brewery implements Parcelable {
         state = cursor.getString(BreweryLoader.Query.STATE);
         postalCode = cursor.getString(BreweryLoader.Query.POSTAL_CODE);
         phone = cursor.getString(BreweryLoader.Query.PHONE);
+        latitude = cursor.getDouble(BreweryLoader.Query.LATITUDE);
+        longitude = cursor.getDouble(BreweryLoader.Query.LONGITUDE);
         taproomHours = cursor.getString(BreweryLoader.Query.TAPROOM_HOURS);
         tourHours = cursor.getString(BreweryLoader.Query.TOUR_HOURS);
         String beerListString = cursor.getString(BreweryLoader.Query.BEER_LIST);
@@ -57,6 +62,7 @@ public class Brewery implements Parcelable {
         }
         logoUrl = cursor.getString(BreweryLoader.Query.LOGO_URL);
         photoUrl = cursor.getString(BreweryLoader.Query.PHOTO_URL);
+        website = cursor.getString(BreweryLoader.Query.WEBSITE);
         twitter = cursor.getString(BreweryLoader.Query.TWITTER);
     }
 
@@ -117,6 +123,22 @@ public class Brewery implements Parcelable {
         this.postalCode = postalCode;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -165,6 +187,14 @@ public class Brewery implements Parcelable {
         this.photoUrl = photoUrl;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public String getTwitter() {
         return twitter;
     }
@@ -206,12 +236,15 @@ public class Brewery implements Parcelable {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", phone='" + phone + '\'' +
                 ", taproomHours='" + taproomHours + '\'' +
                 ", tourHours='" + tourHours + '\'' +
                 ", beerList=" + beerList +
                 ", logoUrl='" + logoUrl + '\'' +
                 ", photoUrl='" + photoUrl + '\'' +
+                ", website='" + website + '\'' +
                 ", twitter='" + twitter + '\'' +
                 '}';
     }
@@ -231,12 +264,15 @@ public class Brewery implements Parcelable {
         dest.writeString(this.city);
         dest.writeString(this.state);
         dest.writeString(this.postalCode);
+        dest.writeDouble(this.latitude);
+        dest.writeDouble(this.longitude);
         dest.writeString(this.phone);
         dest.writeString(this.taproomHours);
         dest.writeString(this.tourHours);
         dest.writeTypedList(this.beerList);
         dest.writeString(this.logoUrl);
         dest.writeString(this.photoUrl);
+        dest.writeString(this.website);
         dest.writeString(this.twitter);
     }
 
@@ -248,12 +284,15 @@ public class Brewery implements Parcelable {
         this.city = in.readString();
         this.state = in.readString();
         this.postalCode = in.readString();
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
         this.phone = in.readString();
         this.taproomHours = in.readString();
         this.tourHours = in.readString();
         this.beerList = in.createTypedArrayList(Beer.CREATOR);
         this.logoUrl = in.readString();
         this.photoUrl = in.readString();
+        this.website = in.readString();
         this.twitter = in.readString();
     }
 

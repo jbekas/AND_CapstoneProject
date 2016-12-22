@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.redgeckotech.beerfinder.R;
 import com.redgeckotech.beerfinder.data.Brewery;
 import com.redgeckotech.beerfinder.view.BreweryListFragment.OnListFragmentInteractionListener;
-import com.redgeckotech.beerfinder.view.dummy.DummyContent.DummyItem;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -19,7 +18,7 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Brewery} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */

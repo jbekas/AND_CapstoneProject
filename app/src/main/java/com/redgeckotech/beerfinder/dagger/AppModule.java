@@ -2,6 +2,7 @@ package com.redgeckotech.beerfinder.dagger;
 
 import android.content.Context;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.redgeckotech.beerfinder.BreweryInfoApplication;
 import com.redgeckotech.beerfinder.BuildConfig;
 import com.redgeckotech.beerfinder.api.BreweryApi;
@@ -154,4 +155,9 @@ public class AppModule {
         return picassoBuilder.build();
     }
 
+    @Provides
+    @Singleton
+    FirebaseAnalytics getFirebaseAnalytics() {
+        return FirebaseAnalytics.getInstance(application);
+    }
 }

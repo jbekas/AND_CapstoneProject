@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
@@ -18,7 +17,7 @@
             android:id="@+id/brewery_logo"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:contentDescription="@string/brewery_image"
+            android:contentDescription="@string/brewery_logo"
             app:srcCompat="@drawable/beer_mug"/>
 
         <TextView

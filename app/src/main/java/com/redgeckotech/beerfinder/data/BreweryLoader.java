@@ -24,12 +24,15 @@ public class BreweryLoader extends CursorLoader {
                 BreweryColumns.CITY,
                 BreweryColumns.STATE,
                 BreweryColumns.POSTAL_CODE,
+                BreweryColumns.LATITUDE,
+                BreweryColumns.LONGITUDE,
                 BreweryColumns.PHONE,
                 BreweryColumns.TAPROOM_HOURS,
                 BreweryColumns.TOUR_HOURS,
                 BreweryColumns.BEER_LIST,
                 BreweryColumns.LOGO_URL,
                 BreweryColumns.PHOTO_URL,
+                BreweryColumns.WEBSITE,
                 BreweryColumns.TWITTER,
         };
 
@@ -40,13 +43,16 @@ public class BreweryLoader extends CursorLoader {
         int CITY = 4;
         int STATE = 5;
         int POSTAL_CODE = 6;
-        int PHONE = 7;
-        int TAPROOM_HOURS = 8;
-        int TOUR_HOURS = 9;
-        int BEER_LIST = 10;
-        int LOGO_URL = 11;
-        int PHOTO_URL = 12;
-        int TWITTER = 13;
+        int LATITUDE = 7;
+        int LONGITUDE = 8;
+        int PHONE = 9;
+        int TAPROOM_HOURS = 10;
+        int TOUR_HOURS = 11;
+        int BEER_LIST = 12;
+        int LOGO_URL = 13;
+        int PHOTO_URL = 14;
+        int WEBSITE = 15;
+        int TWITTER = 16;
     }
 }
 

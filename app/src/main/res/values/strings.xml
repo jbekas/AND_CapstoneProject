@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Austin Breweries</string>
+    <string name="brewery_logo">Brewery Logo</string>
     <string name="brewery_image">Brewery Image</string>
     <string name="title_activity_brewery_detail">Brewery Details</string>
+    <string name="phone_template">"Phone: %1$s"</string>
+    <string name="twitter_template">"Twitter: %1$s"</string>
+    <string name="website_template">"Website: %1$s"</string>
+    <string name="taproom_hours_template">"Taproom Hours: %1$s"</string>
+    <string name="tour_hours_template">"Tour Hours: %1$s"</string>
+    <string name="beer_list">Beer List</string>
 </resources>

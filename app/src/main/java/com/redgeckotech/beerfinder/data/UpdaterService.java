@@ -114,12 +114,15 @@ public class UpdaterService extends IntentService {
                 values.put(BreweryColumns.CITY, brewery.getCity());
                 values.put(BreweryColumns.STATE, brewery.getState());
                 values.put(BreweryColumns.POSTAL_CODE, brewery.getPostalCode());
+                values.put(BreweryColumns.LATITUDE, brewery.getLatitude());
+                values.put(BreweryColumns.LONGITUDE, brewery.getLongitude());
                 values.put(BreweryColumns.PHONE, brewery.getPhone());
                 values.put(BreweryColumns.TAPROOM_HOURS, brewery.getTaproomHours());
                 values.put(BreweryColumns.TOUR_HOURS, brewery.getTourHours());
                 values.put(BreweryColumns.BEER_LIST, brewery.getBeerListAsJsonString());
                 values.put(BreweryColumns.LOGO_URL, brewery.getLogoUrl());
                 values.put(BreweryColumns.PHOTO_URL, brewery.getPhotoUrl());
+                values.put(BreweryColumns.WEBSITE, brewery.getWebsite());
                 values.put(BreweryColumns.TWITTER, brewery.getTwitter());
                 cpo.add(ContentProviderOperation.newInsert(dirUri).withValues(values).build());
             }

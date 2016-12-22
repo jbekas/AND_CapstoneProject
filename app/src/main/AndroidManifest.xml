@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -35,6 +36,10 @@
         <provider android:name=".data.generated.BreweryProvider"
                   android:authorities="${applicationId}"
                   android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAnn3OKD3s9RcVYwfH78a5BFpIOTeyn6RU"/>
 
     </application>
 

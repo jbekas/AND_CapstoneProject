@@ -7,6 +7,8 @@ public class Beer implements Parcelable {
 
     private long id;
     private String name;
+    private String type;
+    private String style;
     private float abv;
     private int ibu;
     private String description;
@@ -25,6 +27,22 @@ public class Beer implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 
     public float getAbv() {
@@ -56,12 +74,17 @@ public class Beer implements Parcelable {
         return "Beer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", style='" + style + '\'' +
                 ", abv=" + abv +
                 ", ibu=" + ibu +
                 ", description='" + description + '\'' +
                 '}';
     }
 
+
+    public Beer() {
+    }
 
     @Override
     public int describeContents() {
@@ -72,23 +95,24 @@ public class Beer implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.id);
         dest.writeString(this.name);
+        dest.writeString(this.type);
+        dest.writeString(this.style);
         dest.writeFloat(this.abv);
         dest.writeInt(this.ibu);
         dest.writeString(this.description);
     }
 
-    public Beer() {
-    }
-
     protected Beer(Parcel in) {
         this.id = in.readLong();
         this.name = in.readString();
+        this.type = in.readString();
+        this.style = in.readString();
         this.abv = in.readFloat();
         this.ibu = in.readInt();
         this.description = in.readString();
     }
 
-    public static final Parcelable.Creator<Beer> CREATOR = new Parcelable.Creator<Beer>() {
+    public static final Creator<Beer> CREATOR = new Creator<Beer>() {
         @Override
         public Beer createFromParcel(Parcel source) {
             return new Beer(source);

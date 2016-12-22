@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "167531679585",
+    "firebase_url": "https://austin-craft-brewery-guide.firebaseio.com",
+    "project_id": "austin-craft-brewery-guide",
+    "storage_bucket": "austin-craft-brewery-guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167531679585:android:1917ce782d7b4a87",
+        "android_client_info": {
+          "package_name": "com.redgeckotech.beerfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167531679585-dva0l857m1cm90gfvh2mpi36lgsrh21v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.redgeckotech.beerfinder",
+            "certificate_hash": "5D0B10CDCFB033CE104B91504D9ED153EB199B3E"
+          }
+        },
+        {
+          "client_id": "167531679585-csojqd1p9c1js69vv9kpsuilmbhrhj54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsYyYQ53-skL58Bci4heWNaaVlIb0fy-Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167531679585-csojqd1p9c1js69vv9kpsuilmbhrhj54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
