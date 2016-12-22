@@ -5,6 +5,7 @@ import android.content.Context;
 import com.redgeckotech.beerfinder.BreweryInfoApplication;
 import com.redgeckotech.beerfinder.BuildConfig;
 import com.redgeckotech.beerfinder.api.BreweryApi;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -144,4 +145,13 @@ public class AppModule {
             }
         }
     }
+
+    @Provides
+    Picasso getPicasso(Context context) {
+        Picasso.Builder picassoBuilder = new Picasso.Builder(context);
+
+        // Picasso.Builder creates the Picasso object to do the actual requests
+        return picassoBuilder.build();
+    }
+
 }

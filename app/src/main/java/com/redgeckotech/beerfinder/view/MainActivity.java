@@ -1,37 +1,25 @@
 package com.redgeckotech.beerfinder.view;
 
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.redgeckotech.beerfinder.BreweryInfoApplication;
+import com.redgeckotech.beerfinder.Constants;
 import com.redgeckotech.beerfinder.R;
 import com.redgeckotech.beerfinder.data.Brewery;
-import com.redgeckotech.beerfinder.data.BreweryLoader;
-import com.squareup.picasso.Picasso;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+        implements BreweryListFragment.OnListFragmentInteractionListener {
 
-    private static final int BREWERY_LIST_LOADER = 0;
-    private static final String BUNDLE_BREWERY_ID = "conversation_id";
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
 
-    private LinearLayoutManager linearLayoutManager;
-    private BreweryRecyclerAdapter breweryRecyclerAdapter;
-
-    @BindView(R.id.brewery_list) RecyclerView recyclerView;
+    private boolean mTwoPane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,94 +30,69 @@ public class MainActivity extends BaseActivity
 
         ButterKnife.bind(this);
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        getLoaderManager().initLoader(BREWERY_LIST_LOADER, new Bundle(), this);
-
-    }
-
-    static class BreweryViewHolder extends ViewHolder {
-
-        @BindView(R.id.brewery_logo) ImageView breweryLogo;
-        @BindView(R.id.brewery_name) TextView breweryName;
-        @BindView(R.id.brewery_address) TextView breweryAddress;
-
-        public BreweryViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.template_brewery_item, parent, false));
-
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    public class BreweryRecyclerAdapter
-            extends CursorRecyclerViewAdapter<BreweryViewHolder> {
-
-
-        public BreweryRecyclerAdapter(Cursor cursor) {
-            super(cursor);
-        }
-
-        @Override
-        public void onBindViewHolderCursor(BreweryViewHolder viewHolder, Cursor cursor) {
-            Brewery brewery = new Brewery(cursor);
-
-            Timber.d(brewery.toString());
-
-            viewHolder.breweryName.setText(brewery.getName());
-            viewHolder.breweryAddress.setText(brewery.getAddress());
-
-            Picasso.with(MainActivity.this)
-                    .load(brewery.getLogoUrl())
-                    .placeholder(R.drawable.beer_mug)
-                    .into(viewHolder.breweryLogo);
-        }
-
-        @Override
-        public int getItemViewTypeCursor(Cursor cursor) {
-            return 0;
-        }
-
-        @Override
-        public BreweryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new BreweryViewHolder(LayoutInflater.from(parent.getContext()), parent);
-        }
-
-        @Override
-        public int getItemCount() {
-            return getCursor() != null ? getCursor().getCount() : 0;
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    //
-    // LoaderManager.LoaderCallbacks<Cursor> implementation
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return BreweryLoader.breweryInstance(this);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-
-        Timber.d("swapping cursor, count: %d", cursor.getCount());
-
-        if (breweryRecyclerAdapter == null) {
-            breweryRecyclerAdapter = new BreweryRecyclerAdapter(cursor);
-            recyclerView.setAdapter(breweryRecyclerAdapter);
+        if (findViewById(R.id.brewery_detail_container) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.brewery_detail_container, new BreweryDetailFragment(), DETAILFRAGMENT_TAG)
+                        .commit();
+            }
         } else {
-            breweryRecyclerAdapter.swapCursor(cursor);
+            mTwoPane = false;
+            getSupportActionBar().setElevation(0f);
         }
-
-        //updateUI();
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        recyclerView.setAdapter(null);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
     }
 
+    @Override
+    public void onListFragmentInteraction(Brewery brewery) {
+        Timber.d("onListFragmentInteraction: %s", brewery);
+
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            if (brewery != null) {
+                Bundle arguments = new Bundle();
+                arguments.putParcelable(Constants.EXTRA_BREWERY, brewery);
+
+                BreweryDetailFragment fragment = new BreweryDetailFragment();
+                fragment.setArguments(arguments);
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.brewery_detail_container, fragment, DETAILFRAGMENT_TAG)
+                        .commit();
+            } else {
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(DETAILFRAGMENT_TAG);
+                if (fragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .remove(fragment)
+                            .commit();
+                }
+            }
+        } else {
+            // for phones, start new activity
+
+            if (brewery != null) {
+                Intent intent = new Intent(this, BreweryDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_BREWERY, brewery);
+                startActivity(intent);
+            } else {
+                Timber.w("brewery is null.");
+            }
+        }
+    }
 }

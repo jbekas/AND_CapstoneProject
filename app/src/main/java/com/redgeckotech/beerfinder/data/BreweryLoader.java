@@ -1,8 +1,8 @@
 package com.redgeckotech.beerfinder.data;
 
 import android.content.Context;
-import android.content.CursorLoader;
 import android.net.Uri;
+import android.support.v4.content.CursorLoader;
 
 public class BreweryLoader extends CursorLoader {
     public static BreweryLoader breweryInstance(Context context) {

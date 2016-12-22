@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.redgeckotech.beerfinder.BreweryInfoApplication;
 import com.redgeckotech.beerfinder.view.BaseActivity;
+import com.redgeckotech.beerfinder.view.BreweryDetailFragment;
+import com.redgeckotech.beerfinder.view.BreweryListFragment;
 import com.redgeckotech.beerfinder.view.MainActivity;
 import com.redgeckotech.beerfinder.data.UpdaterService;
 
@@ -20,6 +22,9 @@ public interface AppComponent {
 
     void inject(BaseActivity activity);
     void inject(MainActivity activity);
+
+    void inject(BreweryDetailFragment fragment);
+    void inject(BreweryListFragment fragment);
 
     //Exposed to sub-graphs.
     Context context();
