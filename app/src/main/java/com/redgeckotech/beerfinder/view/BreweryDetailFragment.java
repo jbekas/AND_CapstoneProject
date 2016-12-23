@@ -259,7 +259,7 @@ public class BreweryDetailFragment extends Fragment {
                 }
             }
 
-            BeerRecyclerViewAdapter beerAdapter = new BeerRecyclerViewAdapter(brewery.getBeerList());
+            BeerRecyclerViewAdapter beerAdapter = new BeerRecyclerViewAdapter(getActivity(), brewery.getBeerList());
             beerListView.setLayoutManager(new LinearLayoutManager(getActivity()));
             beerListView.setAdapter(beerAdapter);
         }

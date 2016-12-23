@@ -13,4 +13,7 @@
     <string name="twitter_label">Twitter:</string>
     <string name="unable_to_make_call">Unable to make call.</string>
     <string name="unable_to_view_website">Unable to view website.</string>
+    <string name="style_template">"Style: %1$s"</string>
+    <string name="abv_template">"ABV: %1$.2f%%"</string>
+    <string name="ibu_template">"IBU: %1$d"</string>
 </resources>

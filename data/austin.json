@@ -19,27 +19,24 @@
     "beerList":[
       {
         "name":"Superliner",
-        "type":"American IPA",
         "style":"American IPA",
         "abv":6.8,
         "ibu":60,
-        "description":"beer 1 description"
+        "description":null
       },
       {
         "name":"Big Mama Red",
-        "type":"Imperial Red Ale",
         "style":"Imperial Red Ale",
         "abv":3.75,
         "ibu":56,
-        "description":"beer 2 description"
+        "description":null
       },
       {
         "name":"Day Trip Pale Ale",
-        "type":"American Pale Ale",
         "style":"American Pale Ale",
         "abv":5.5,
         "ibu":39,
-        "description":"beer 2 description"
+        "description":null
       }
     ]
   },
@@ -63,27 +60,24 @@
     "beerList":[
       {
         "name":"Greenhouse IPA",
-        "type":"American IPA",
         "style":"American IPA",
         "abv":7.6,
         "ibu":55,
-        "description":"beer 1 description"
+        "description":null
       },
       {
         "name":"A Pale Mosaic",
-        "type":"American IPA",
         "style":"American IPA",
         "abv":5.93,
         "ibu":60,
-        "description":"beer 2 description"
+        "description":null
       },
       {
         "name":"The One They Call Zoe",
-        "type":"Pale Lager",
-        "style":"Lager",
+        "style":"Pale Lager",
         "abv":5.2,
         "ibu":18,
-        "description":"beer 2 description"
+        "description":null
       }
     ]
   },
@@ -107,15 +101,13 @@
     "beerList":[
       {
         "name":"Sun Eater",
-        "type":"Sorghum Ale",
-        "style":"Gruit",
+        "style":"Sorghum Ale",
         "abv":4.8,
         "ibu":0,
         "description":"A true son of Texas, this gruit is made with all native Texas ingredients. Sitting on a base of sorghum cane juice and dark brown sugar, Sun Eater is bittered with rosemary and infused with dried lemon peel. It is highly-attenuated for a dry and refreshing finish similar to that of a cider or champagne. This gruit was designed to beat back that Tyrant Sun of hot Texas weather, which is practically year-round, so grab a 6-pack and head out into the world!"
       },
       {
         "name":"Renewal",
-        "type":"Wheat Ale",
         "style":"Wheat Ale",
         "abv":5.8,
         "ibu":15,
@@ -123,8 +115,7 @@
       },
       {
         "name":"Long Walk",
-        "type":"Grapefruit IPA",
-        "style":"American IPA",
+        "style":"Grapefruit IPA",
         "abv":7.0,
         "ibu":57,
         "description":"Our crisp, Magnum-hopped wheat beer brewed with tamarind fruit for a tart and pleasing finish. Renewal appeals to those searching for that subtle balance between sour and refreshing. Specifically formulated to meet all your river-floating and porch-drinking needs! Cheers!"
@@ -151,15 +142,13 @@
     "beerList":[
       {
         "name":"The Green Room IPA",
-        "type":"Texas IPA",
-        "style":"American IPA",
+        "style":"Texas IPA",
         "abv":7.0,
         "ibu":70,
         "description":"Inspired by the live music capital of the world, the green room is a happy and hoppy beer that strikes all the right chords. This tasty brew tunes up the taste buds with some intense grapefruit flavors. Herbacious aromas sustain the experience which finishes with bright citrus notes."
       },
       {
         "name":"Barton Springs Pale Ale",
-        "type":"Pale Ale",
         "style":"Pale Ale",
         "abv":6.6,
         "ibu":45,
@@ -167,7 +156,6 @@
       },
       {
         "name":"Jacobite Scotch Ale",
-        "type":"Scotch Ale",
         "style":"Scotch Ale",
         "abv":9.5,
         "ibu":20,
