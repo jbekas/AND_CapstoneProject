@@ -7,8 +7,8 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 final SUPPORT_VERSION = '25.1.0'
 final DAGGER_VERSION = '2.6'
-final GOOGLE_SERVICES = '10.0.1'
-//final GOOGLE_SERVICES = '9.8.0'
+//final GOOGLE_SERVICES = '10.0.1'
+final GOOGLE_SERVICES = '9.8.0'
 
 android {
     compileSdkVersion 25
@@ -21,8 +21,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BREWERY_LIST_BASE_URL", "\"https://raw.githubusercontent.com/\""
-        //buildConfigField "String", "BREWERY_LIST_BASE_URL", "\"http://mac.bekas.org/\""
+        //buildConfigField "String", "BREWERY_LIST_BASE_URL", "\"https://raw.githubusercontent.com/\""
+        buildConfigField "String", "BREWERY_LIST_BASE_URL", "\"http://mac.bekas.org/\""
 
         // Support vector drawables in the support library
         vectorDrawables.useSupportLibrary = true

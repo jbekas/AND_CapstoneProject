@@ -16,4 +16,5 @@
     <string name="style_template">"Style: %1$s"</string>
     <string name="abv_template">"ABV: %1$.2f%%"</string>
     <string name="ibu_template">"IBU: %1$d"</string>
+    <string name="brewery_of_the_day">Brewery of the Day</string>
 </resources>

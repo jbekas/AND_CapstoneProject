@@ -3,4 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <!-- This looks like a reasonable default size -->
+    <dimen name="widget_default_height">110dp</dimen>
+    <dimen name="widget_default_width">90dp</dimen>
+
+    <!-- Per specs -->
+    <dimen name="widget_margin">8dp</dimen>
+
 </resources>

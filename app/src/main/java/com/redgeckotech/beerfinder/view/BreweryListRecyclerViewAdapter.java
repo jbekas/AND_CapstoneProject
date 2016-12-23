@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Brewery} and makes a call to the
@@ -42,7 +41,7 @@ public class BreweryListRecyclerViewAdapter extends CursorRecyclerViewAdapter<Br
 
         viewHolder.brewery = new Brewery(cursor);
 
-        Timber.d(viewHolder.brewery.toString());
+        //Timber.d(viewHolder.brewery.toString());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
