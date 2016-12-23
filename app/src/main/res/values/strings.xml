@@ -3,10 +3,14 @@
     <string name="brewery_logo">Brewery Logo</string>
     <string name="brewery_image">Brewery Image</string>
     <string name="title_activity_brewery_detail">Brewery Details</string>
-    <string name="phone_template">"Phone: %1$s"</string>
-    <string name="twitter_template">"Twitter: %1$s"</string>
-    <string name="website_template">"Website: %1$s"</string>
-    <string name="taproom_hours_template">"Taproom Hours: %1$s"</string>
-    <string name="tour_hours_template">"Tour Hours: %1$s"</string>
     <string name="beer_list">Beer List</string>
+    <string name="other_info">Other Useful Info</string>
+    <string name="location_header">Location</string>
+    <string name="tour_hours_header">Tour Hours</string>
+    <string name="taproom_hours_header">Taproom Hours</string>
+    <string name="phone_label">Phone:</string>
+    <string name="website_label">Website:</string>
+    <string name="twitter_label">Twitter:</string>
+    <string name="unable_to_make_call">Unable to make call.</string>
+    <string name="unable_to_view_website">Unable to view website.</string>
 </resources>

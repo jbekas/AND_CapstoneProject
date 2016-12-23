@@ -58,7 +58,7 @@
     "tourHours":null,
     "website":"http://hopsandgrain.com",
     "twitter":"@hopsandgrain",
-    "logoUrl":null,
+    "logoUrl":"https://pbs.twimg.com/profile_images/788833777195724801/16bnBSlL.jpg",
     "photoUrl":"https://scontent-ort2-1.xx.fbcdn.net/v/t31.0-8/12719662_10153953401609288_7906958446780614657_o.jpg?oh=c86876824c0e96a4538d06f1b3078733&oe=58EDB47E",
     "beerList":[
       {
@@ -102,8 +102,8 @@
     "tourHours":null,
     "website":"http://www.4thtap.coop/",
     "twitter":"@hopsandgrain",
-    "logoUrl":null,
-    "photoUrl":null,
+    "logoUrl":"https://pbs.twimg.com/profile_images/609442926519652352/-ZhWksYP.jpg",
+    "photoUrl":"http://thebrewermagazine.com/wp-content/uploads/2016/02/FullSizeRender-5Web-620x400.jpg",
     "beerList":[
       {
         "name":"Sun Eater",
@@ -128,6 +128,50 @@
         "abv":7.0,
         "ibu":57,
         "description":"Our crisp, Magnum-hopped wheat beer brewed with tamarind fruit for a tart and pleasing finish. Renewal appeals to those searching for that subtle balance between sour and refreshing. Specifically formulated to meet all your river-floating and porch-drinking needs! Cheers!"
+      }
+    ]
+  },
+  {
+    "id":4,
+    "name":"Uncle Billy's",
+    "address":"1530 Barton Springs Rd",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78704",
+    "latitude":30.26211129999999,
+    "longitude":-97.7612341,
+    "phone":"512.476.0100",
+    "taproomHours":"Sun 10a-12a\nMon-Thur 4p-12a\nFri 4p-1a\nSat 10a-1a",
+    "tourHours":null,
+    "website":"http://www.unclebillys.com/",
+    "twitter":"@UncleBillys",
+    "logoUrl":"https://pbs.twimg.com/profile_images/598912333545508864/Dc5fcapu.png",
+    "photoUrl":"http://www.backtobeer.com/wp-content/uploads/2014/03/Uncle-Billys-Brew-Que-2-Travis-Lake.jpg",
+    "beerList":[
+      {
+        "name":"The Green Room IPA",
+        "type":"Texas IPA",
+        "style":"American IPA",
+        "abv":7.0,
+        "ibu":70,
+        "description":"Inspired by the live music capital of the world, the green room is a happy and hoppy beer that strikes all the right chords. This tasty brew tunes up the taste buds with some intense grapefruit flavors. Herbacious aromas sustain the experience which finishes with bright citrus notes."
+      },
+      {
+        "name":"Barton Springs Pale Ale",
+        "type":"Pale Ale",
+        "style":"Pale Ale",
+        "abv":6.6,
+        "ibu":45,
+        "description":"This pale ale is as refreshing as Austin’’s favorite swimming hole. Bitter undertones combine with citrus and floral aromas while light crystal malts add sweetness and copper color."
+      },
+      {
+        "name":"Jacobite Scotch Ale",
+        "type":"Scotch Ale",
+        "style":"Scotch Ale",
+        "abv":9.5,
+        "ibu":20,
+        "description":"A full bodied, high octane brew made with lighter crystal malts, a portion of them boiled over open flames creating a carmelization for enhanced color and sweetness. Tickles the nose with sweet cherry fruitiness, with waves of plum, raisin and caramel flavors riding a boozy wave."
       }
     ]
   }

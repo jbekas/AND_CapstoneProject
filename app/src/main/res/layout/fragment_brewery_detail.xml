@@ -1,129 +1,246 @@
-<ScrollView android:id="@+id/brewery_detail_scrollview"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".view.BreweryDetailFragment">
+<ScrollView
+    android:id="@+id/brewery_detail_scrollview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.BreweryDetailFragment">
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/brewery_detail_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <FrameLayout
+            android:id="@+id/brewery_image_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="128dp">
 
-            <FrameLayout
-                android:id="@+id/brewery_image_layout"
+            <ImageView
+                android:id="@+id/brewery_image"
                 android:layout_width="match_parent"
-                android:layout_height="128dp">
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/brewery_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/no_brewery_image"/>
+        </FrameLayout>
 
-                <ImageView
-                    android:id="@+id/brewery_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/brewery_image"
-                    android:scaleType="centerCrop"/>
-            </FrameLayout>
+        <LinearLayout
+            android:id="@+id/location_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/brewery_info_layout"
+            <TextView
+                android:id="@+id/address_header"
+                style="@style/SectionHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/brewery_image_layout"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text="@string/location_header"/>
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                tools:text="Address Line 1"/>
+
+            <TextView
+                android:id="@+id/address2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                tools:text="Address Line 2"/>
+
+            <TextView
+                android:id="@+id/city_state_postal_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                tools:text="City, ST 12345"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/taproom_hours_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/taproom_hours_header"
+                style="@style/SectionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/taproom_hours_header"/>
+
+            <TextView
+                android:id="@+id/taproom_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                tools:text="7 days, 10a-10p"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tour_hours_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tour_hours_header"
+                style="@style/SectionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tour_hours_header"/>
+
+            <TextView
+                android:id="@+id/tour_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                tools:text="7 days, every hour"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/other_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/other_info"/>
+
+            <LinearLayout
+                android:id="@+id/phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:id="@+id/phone_label"
+                    style="@style/TextLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_label"/>
 
                 <TextView
                     android:id="@+id/phone"
+                    style="@style/TextLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Phone: 512-123-4567"/>
-
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Address Line 1"/>
-
-                <TextView
-                    android:id="@+id/address2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Address Line 2"/>
-
-                <TextView
-                    android:id="@+id/city_state_postal_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="City, ST 12345"/>
-
-                <com.google.android.gms.maps.MapView
-                    android:id="@+id/map"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:visibility="invisible"
-                    />
-
-                <TextView
-                    android:id="@+id/taproom_hours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Taproom Hours: 7 days, 10a-10p"/>
-
-                <TextView
-                    android:id="@+id/tour_hours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Tour Hours: 7 days, every hour"/>
-
-                <TextView
-                    android:id="@+id/website"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Website: http://www.website.com/"/>
-
-                <TextView
-                    android:id="@+id/twitter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    tools:text="Twitter: @twittername"/>
+                    android:layout_marginStart="8dp"
+                    tools:text="512.123.4567"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/beer_list_layout"
+                android:id="@+id/website_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/brewery_info_layout"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/website_label"
+                    style="@style/TextLabel"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_gray"
-                    android:padding="16dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:text="@string/beer_list"/>
+                    android:text="@string/website_label"/>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/beer_list"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/website"
+                    style="@style/TextLink"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    tools:listitem="@layout/template_beer"/>
+                    android:layout_marginStart="8dp"
+                    tools:text="http://www.website.com/"/>
 
             </LinearLayout>
-        </RelativeLayout>
-    </android.support.design.widget.CoordinatorLayout>
+
+            <LinearLayout
+                android:id="@+id/twitter_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:id="@+id/twitter_label"
+                    style="@style/TextLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/twitter_label"/>
+
+                <TextView
+                    android:id="@+id/twitter"
+                    style="@style/TextLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    tools:text="\@twittername"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/beer_list_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SectionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/beer_list"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/beer_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                tools:listitem="@layout/template_beer"/>
+
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

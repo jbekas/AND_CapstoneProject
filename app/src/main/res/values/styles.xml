@@ -13,6 +13,25 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="SectionHeader">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="TextLabel">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextLink">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/orange700</item>
+    </style>
+
     <style name="MyCardViewStyle" parent="Theme.AppCompat.Light" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

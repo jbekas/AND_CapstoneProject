@@ -34,6 +34,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:support-v4:${SUPPORT_VERSION}"
+            force "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

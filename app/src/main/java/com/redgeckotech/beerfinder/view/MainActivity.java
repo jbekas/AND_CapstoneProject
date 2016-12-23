@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity
 
         ButterKnife.bind(this);
 
-        FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+        //FirebaseCrash.report(new Exception("My first Android non-fatal error"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

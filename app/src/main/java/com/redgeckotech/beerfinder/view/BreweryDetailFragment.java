@@ -1,7 +1,12 @@
 package com.redgeckotech.beerfinder.view;
 
-import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,29 +44,43 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
+import static android.Manifest.permission.CALL_PHONE;
+
 public class BreweryDetailFragment extends Fragment {
 
+    private final static int ACCESS_MAKE_CALL = 1;
+
     private final static String BUNDLE_KEY_MAP_STATE = "mapData";
+    private final static String BUNDLE_PHONE_NUMBER_TO_CALL = "phoneNumber";
 
     @Inject FirebaseAnalytics firebaseAnalytics;
     @Inject Picasso picasso;
 
     @BindView(R.id.brewery_detail_scrollview) ScrollView scrollView;
+    @BindView(R.id.brewery_detail_layout) ViewGroup breweryDetailLayout;
     @BindView(R.id.brewery_image_layout) ViewGroup breweryImageLayout;
     @BindView(R.id.brewery_image) ImageView breweryImage;
-    @BindView(R.id.phone) TextView phone;
     @BindView(R.id.address) TextView address;
     @BindView(R.id.address2) TextView address2;
     @BindView(R.id.city_state_postal_code) TextView cityStatePostal;
     @BindView(R.id.map) MapView mapView;
+    @BindView(R.id.taproom_hours_layout) ViewGroup taproomHoursLayout;
     @BindView(R.id.taproom_hours) TextView taproomHours;
+    @BindView(R.id.tour_hours_layout) ViewGroup tourHoursLayout;
     @BindView(R.id.tour_hours) TextView tourHours;
+    @BindView(R.id.other_info_layout) ViewGroup otherInfoLayout;
+    @BindView(R.id.phone_layout) ViewGroup phoneLayout;
+    @BindView(R.id.phone) TextView phone;
+    @BindView(R.id.website_layout) ViewGroup websiteLayout;
     @BindView(R.id.website) TextView website;
+    @BindView(R.id.twitter_layout) ViewGroup twitterLayout;
     @BindView(R.id.twitter) TextView twitter;
     @BindView(R.id.beer_list) RecyclerView beerListView;
 
     private Brewery brewery;
     private GoogleMap googleMap;
+
+    private String phoneNumberToCall;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,24 +91,29 @@ public class BreweryDetailFragment extends Fragment {
 
         if (savedInstanceState != null) {
             brewery = savedInstanceState.getParcelable(Constants.EXTRA_BREWERY);
+            phoneNumberToCall = savedInstanceState.getString(BUNDLE_PHONE_NUMBER_TO_CALL);
         } else {
             if (getArguments() != null) {
                 brewery = getArguments().getParcelable(Constants.EXTRA_BREWERY);
             }
         }
 
-        if (brewery == null) {
-            Timber.w("brewery is null.");
-            return;
+//        if (brewery == null) {
+//            Timber.w("brewery is null.");
+//            return;
+//        }
+
+        if (brewery != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, Long.toString(brewery.getId()));
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, brewery.getName());
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            Timber.d("brewery: %s", brewery);
+        } else {
+            Timber.i("brewery is null.");
         }
-
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, Long.toString(brewery.getId()));
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, brewery.getName());
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-        Timber.d("brewery: %s", brewery);
     }
 
     @Override
@@ -104,18 +129,19 @@ public class BreweryDetailFragment extends Fragment {
             // Load the map state bundle from the main savedInstanceState
             mapState = savedInstanceState.getBundle(BUNDLE_KEY_MAP_STATE);
         }
+
         mapView.onCreate(mapState);
 
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            Timber.e(e, null);
-        }
-
         if (brewery == null) {
-            scrollView.setVisibility(View.GONE);
+            breweryDetailLayout.setVisibility(View.GONE);
         } else {
-            scrollView.setVisibility(View.VISIBLE);
+            breweryDetailLayout.setVisibility(View.VISIBLE);
+
+            try {
+                MapsInitializer.initialize(getActivity().getApplicationContext());
+            } catch (Exception e) {
+                Timber.e(e, null);
+            }
 
             if (brewery.getLatitude() == 0 || brewery.getLongitude() == 0) {
                 mapView.setVisibility(View.GONE);
@@ -129,11 +155,10 @@ public class BreweryDetailFragment extends Fragment {
                         LatLng latLng = new LatLng(brewery.getLatitude(), brewery.getLongitude());
 
                         String addressString = String.format(Locale.US, "%s\n%s, %s %s", brewery.getAddress(), brewery.getCity(), brewery.getState(), brewery.getPostalCode());
-                        googleMap.addMarker(new MarkerOptions().position(latLng).title(brewery.getName()).snippet(addressString));
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title(brewery.getName()));//.snippet(addressString));
 
                         // For zooming automatically to the location of the marker
                         CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(14).build();
-                        //googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                     }
                 });
@@ -141,18 +166,9 @@ public class BreweryDetailFragment extends Fragment {
 
 
             if (TextUtils.isEmpty(brewery.getPhotoUrl())) {
-                breweryImageLayout.setVisibility(View.GONE);
+                picasso.load(R.drawable.no_brewery_image).into(breweryImage);
             } else {
-                breweryImageLayout.setVisibility(View.VISIBLE);
-
                 picasso.load(brewery.getPhotoUrl()).into(breweryImage);
-            }
-
-            if (TextUtils.isEmpty(brewery.getPhone())) {
-                phone.setVisibility(View.GONE);
-            } else {
-                phone.setVisibility(View.VISIBLE);
-                phone.setText(getString(R.string.phone_template, brewery.getPhone()));
             }
 
             if (TextUtils.isEmpty(brewery.getAddress())) {
@@ -181,32 +197,66 @@ public class BreweryDetailFragment extends Fragment {
                 cityStatePostal.setText(cityStatePostalString);
             }
 
+            // Taproom Hours Section
+
             if (TextUtils.isEmpty(brewery.getTaproomHours())) {
-                taproomHours.setVisibility(View.GONE);
+                taproomHoursLayout.setVisibility(View.GONE);
             } else {
-                taproomHours.setVisibility(View.VISIBLE);
-                taproomHours.setText(getString(R.string.taproom_hours_template, brewery.getTaproomHours()));
+                taproomHoursLayout.setVisibility(View.VISIBLE);
+                taproomHours.setText(brewery.getTaproomHours());
             }
+
+            // Tour Hours Section
 
             if (TextUtils.isEmpty(brewery.getTourHours())) {
-                tourHours.setVisibility(View.GONE);
+                tourHoursLayout.setVisibility(View.GONE);
             } else {
-                tourHours.setVisibility(View.VISIBLE);
-                tourHours.setText(getString(R.string.tour_hours_template, brewery.getTourHours()));
+                tourHoursLayout.setVisibility(View.VISIBLE);
+                tourHours.setText(brewery.getTourHours());
             }
 
-            if (TextUtils.isEmpty(brewery.getWebsite())) {
-                website.setVisibility(View.GONE);
-            } else {
-                website.setVisibility(View.VISIBLE);
-                website.setText(getString(R.string.website_template, brewery.getWebsite()));
-            }
+            // Other Info Section
 
-            if (TextUtils.isEmpty(brewery.getTwitter())) {
-                twitter.setVisibility(View.GONE);
+            if (TextUtils.isEmpty(brewery.getPhone()) &&
+                    TextUtils.isEmpty(brewery.getWebsite()) &&
+                    TextUtils.isEmpty(brewery.getTwitter())) {
+
+                otherInfoLayout.setVisibility(View.GONE);
             } else {
-                twitter.setVisibility(View.VISIBLE);
-                twitter.setText(getString(R.string.twitter_template, brewery.getTwitter()));
+
+                otherInfoLayout.setVisibility(View.VISIBLE);
+
+                if (TextUtils.isEmpty(brewery.getPhone())) {
+                    phoneLayout.setVisibility(View.GONE);
+                } else {
+                    phoneLayout.setVisibility(View.VISIBLE);
+                    phoneLayout.setOnClickListener(v -> {
+                        makeCall(brewery.getPhone());
+                    });
+                    phone.setText(brewery.getPhone());
+                }
+
+                if (TextUtils.isEmpty(brewery.getWebsite())) {
+                    websiteLayout.setVisibility(View.GONE);
+                } else {
+                    websiteLayout.setVisibility(View.VISIBLE);
+                    websiteLayout.setOnClickListener(v -> {
+                        viewUrl(brewery.getWebsite());
+                    });
+                    website.setText(brewery.getWebsite());
+                }
+
+                if (TextUtils.isEmpty(brewery.getTwitter())) {
+                    twitterLayout.setVisibility(View.GONE);
+                } else {
+                    twitterLayout.setVisibility(View.VISIBLE);
+                    twitterLayout.setOnClickListener(v -> {
+                        String twitterName = brewery.getTwitter().replace("@", "");
+                        String twitterUrl = String.format(Locale.US, "http://www.twitter.com/%s", twitterName);
+                        viewUrl(twitterUrl);
+                    });
+                    twitter.setText(brewery.getTwitter());
+                }
             }
 
             BeerRecyclerViewAdapter beerAdapter = new BeerRecyclerViewAdapter(brewery.getBeerList());
@@ -225,6 +275,8 @@ public class BreweryDetailFragment extends Fragment {
         mapView.onSaveInstanceState(mapState);
         // Put the map bundle in the main outState
         outState.putBundle(BUNDLE_KEY_MAP_STATE, mapState);
+
+        outState.putString(BUNDLE_PHONE_NUMBER_TO_CALL, phoneNumberToCall);
 
         outState.putParcelable(Constants.EXTRA_BREWERY, brewery);
     }
@@ -273,99 +325,60 @@ public class BreweryDetailFragment extends Fragment {
         }
     }
 
-    public void updateUI() {
-        final Activity activity = getActivity();
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
 
-        if (activity == null) {
-            Timber.w("Activity no longer exists, returning.");
-            return;
-        } else {
+        Timber.d("onRequestPermissionsResult requestCode: %d, permissions: %s, grantResults: %s", requestCode, permissions, grantResults);
 
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        if (brewery == null) {
-                            scrollView.setVisibility(View.INVISIBLE);
-                        } else {
-                            scrollView.setVisibility(View.VISIBLE);
-
-                            if (TextUtils.isEmpty(brewery.getPhotoUrl())) {
-                                breweryImageLayout.setVisibility(View.GONE);
-                            } else {
-                                breweryImageLayout.setVisibility(View.VISIBLE);
-
-                                picasso.load(brewery.getPhotoUrl()).into(breweryImage);
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getPhone())) {
-                                phone.setVisibility(View.GONE);
-                            } else {
-                                phone.setVisibility(View.VISIBLE);
-                                phone.setText(getString(R.string.phone_template, brewery.getPhone()));
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getAddress())) {
-                                address.setVisibility(View.GONE);
-                            } else {
-                                address.setVisibility(View.VISIBLE);
-                                address.setText(brewery.getAddress());
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getAddress2())) {
-                                address2.setVisibility(View.GONE);
-                            } else {
-                                address2.setVisibility(View.VISIBLE);
-                                address2.setText(brewery.getAddress2());
-                            }
-
-                            String cityStatePostalString = String.format(Locale.getDefault(),
-                                    "%s, %s %s", brewery.getCity(), brewery.getState(),
-                                    brewery.getPostalCode());
-                            cityStatePostalString = cityStatePostalString.trim();
-
-                            if (TextUtils.isEmpty(cityStatePostalString) || ",".equals(cityStatePostalString)) {
-                                cityStatePostal.setVisibility(View.GONE);
-                            } else {
-                                cityStatePostal.setVisibility(View.VISIBLE);
-                                cityStatePostal.setText(cityStatePostalString);
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getTaproomHours())) {
-                                taproomHours.setVisibility(View.GONE);
-                            } else {
-                                taproomHours.setVisibility(View.VISIBLE);
-                                taproomHours.setText(getString(R.string.taproom_hours_template, brewery.getTaproomHours()));
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getTourHours())) {
-                                tourHours.setVisibility(View.GONE);
-                            } else {
-                                tourHours.setVisibility(View.VISIBLE);
-                                tourHours.setText(getString(R.string.tour_hours_template, brewery.getTourHours()));
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getWebsite())) {
-                                website.setVisibility(View.GONE);
-                            } else {
-                                website.setVisibility(View.VISIBLE);
-                                website.setText(getString(R.string.website_template, brewery.getWebsite()));
-                            }
-
-                            if (TextUtils.isEmpty(brewery.getTwitter())) {
-                                twitter.setVisibility(View.GONE);
-                            } else {
-                                twitter.setVisibility(View.VISIBLE);
-                                twitter.setText(getString(R.string.twitter_template, brewery.getTwitter()));
-                            }
-
-
-                        }
-                    } catch (IllegalStateException e) {
-                        Timber.e(e, null);
-                    }
+        switch (requestCode) {
+            case ACCESS_MAKE_CALL: {
+                if (hasMakeCallPermission()) {
+                    makeCall(phoneNumberToCall);
                 }
-            });
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean hasMakeCallPermission() {
+        return (getActivity()).checkSelfPermission(CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void checkPermissionsAndMakeCall(String phoneNumber) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            // If user already has external storage permissions, initiate gallery intent.
+            if ((getActivity()).checkSelfPermission(CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                makeCall(phoneNumber);
+            } else {
+                phoneNumberToCall = phoneNumber;
+                requestPermissions(new String[] {CALL_PHONE}, ACCESS_MAKE_CALL);
+            }
+        } else {
+            makeCall(phoneNumber);
+        }
+    }
+
+    private void makeCall(String phoneNumber) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e, null);
+            Toast.makeText(getActivity(), R.string.unable_to_make_call, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void viewUrl(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        } catch (Exception e) {
+            Timber.e(e, null);
+            Toast.makeText(getActivity(), R.string.unable_to_view_website, Toast.LENGTH_SHORT).show();
         }
     }
 }
