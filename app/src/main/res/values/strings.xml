@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Austin Breweries</string>
+    <string name="app_name">ATX Craft Beer</string>
     <string name="brewery_logo">Brewery Logo</string>
     <string name="brewery_image">Brewery Image</string>
     <string name="title_activity_brewery_detail">Brewery Details</string>

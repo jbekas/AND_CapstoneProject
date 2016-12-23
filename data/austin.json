@@ -162,5 +162,176 @@
         "description":"A full bodied, high octane brew made with lighter crystal malts, a portion of them boiled over open flames creating a carmelization for enhanced color and sweetness. Tickles the nose with sweet cherry fruitiness, with waves of plum, raisin and caramel flavors riding a boozy wave."
       }
     ]
+  },
+  {
+    "id":5,
+    "name":"Adelbert's Brewery",
+    "address":"2314 Rutland Dr #100",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78758",
+    "latitude":30.3826181,
+    "longitude":-97.72010259999999,
+    "phone":"512.662.1462",
+    "taproomHours":"Wednesday: 5-10 pm\nThursday: 5-10 pm\nFriday: 5-10 pm\nSaturday: 1-10 pm\nSunday: 1-7 pm",
+    "tourHours":null,
+    "website":"http://adelbertsbeer.com/",
+    "twitter":"@adelbertsbeer",
+    "logoUrl":"https://pbs.twimg.com/profile_images/3212444711/b646a4c407d0b5bcf8829c17e7cc0b35.png",
+    "photoUrl":"https://cdn3.vox-cdn.com/uploads/chorus_image/image/49318105/12891779_998567066857387_7142393981756694406_o.0.0.jpg",
+    "beerList":[
+      {
+        "name":"Black Rhino",
+        "style":"Black Session Ale",
+        "abv":5.6,
+        "ibu":0,
+        "description":"Black Rhino is an earthy ale with hints of coffee and cocoa that pours as dark as the name we gave it. Don’t let the name fool you. This dark ale is surprisingly smooth and easy drinking. It pairs well with salty appetizers, bold musky cheeses, and wild game dishes."
+      },
+      {
+        "name":"Castaway Blonde Ale",
+        "style":"Belgian Blonde Ale",
+        "abv":5.5,
+        "ibu":0,
+        "description":"This crisp, refreshing blonde ale is the perfect beer for summer sipping. Hints of honey and peach blend with Sladek hops to bring forth a bright and balanced Belgian ale. It pairs well with caprese salad, grilled shrimp, spicy Thai, and french fries."
+      },
+      {
+        "name":"Dancin’ Monks",
+        "style":"Dubbel Ale",
+        "abv":7.2,
+        "ibu":0,
+        "description":"This clean, malty ale has a robust flavor with fruity, plum aromas. The carbonation balances the moderate sweetness from the malt, resulting in a dry and smooth finish. It pairs great with savory foods like barbecue, rich stews, grilled meats, and dark chocolate cake."
+      }
+    ]
+  },
+  {
+    "id":6,
+    "name":"Blue Owl Brewing",
+    "address":"2400 E Cesar Chavez St #300",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78702",
+    "latitude":30.2549608,
+    "longitude":-97.7175678,
+    "phone":"512.593.1262",
+    "taproomHours":"Wednesday to Friday, 3PM to 10PM\nSaturday, 12PM to 10PM\nSunday, 12PM to 6PM",
+    "tourHours":"Saturday at 3pm & 4:30pm\nSunday at 3pm & 4:30pm",
+    "website":"http://www.blueowlbrewing.com/",
+    "twitter":"@adelbertsbeer",
+    "logoUrl":"https://pbs.twimg.com/profile_images/797453416909787137/A9NyC04m.jpg",
+    "photoUrl":"http://austinot.com/wp-content/uploads/2015/12/Blue-Owl-Beer.jpg",
+    "beerList":[
+      {
+        "name":"Little Boss",
+        "style":"Sour Session Wheat",
+        "abv":3.8,
+        "ibu":7,
+        "description":"Straw color, wheat, light, tart, effervescent, refreshing. Reminiscent of the Berliner Weisse style."
+      },
+      {
+        "name":"Spirit Animal",
+        "style":"Sour Pale Ale",
+        "abv":5.1,
+        "ibu":35,
+        "description":"American pale ale, hoppy citrus balanced with sturdy malt backbone and tart crispness."
+      },
+      {
+        "name":"Professor Black",
+        "style":"Sour Cherry Stout",
+        "abv":6.1,
+        "ibu":40,
+        "description":"Roasted malt with complex dark fruit and tart cherry flavor."
+      },
+      {
+        "name":"Dapper Devil",
+        "style":"Raspberry Belgian Strong Ale",
+        "abv":8.5,
+        "ibu":30,
+        "description":"A dry, fruity and effervescent Belgian Strong ale with raspberry sweetness."
+      }
+    ]
+  },
+  {
+    "id":7,
+    "name":"Zilker Brewing Company",
+    "address":"1701 E 6th St",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78702",
+    "latitude":30.2620502,
+    "longitude":-97.72456129999999,
+    "phone":"512.765.4946",
+    "taproomHours":"Wed – Thur: 4pm-10pm\nFri: 2pm-12am\nSat: Noon-12am\nSunday: Noon-8pm",
+    "tourHours":null,
+    "website":"http://www.zilkerbeer.com/",
+    "twitter":"@zilkerbeer",
+    "logoUrl":"https://pbs.twimg.com/profile_images/590561612647522305/WvHPd6hw.png",
+    "photoUrl":"https://media-cdn.tripadvisor.com/media/photo-s/08/de/84/6b/zilker-brewing-company.jpg",
+    "beerList":[
+      {
+        "name":"Pale Ale",
+        "style":"Pale Ale",
+        "abv":4.9,
+        "ibu":0,
+        "description":"A golden hued pale brewed with pilsner malt, noble hops, and our unique house yeast. Dry hopped with a blend of noble and American hops to complement the subtle fruity yeast profile, providing a complete flavor and aroma experience. This beer is for those looking to get more out of their go to beer. Full flavor upfront, with a clean finish."
+      },
+      {
+        "name":"Marco IPA",
+        "style":"American IPA",
+        "abv":7.0,
+        "ibu":0,
+        "description":"Our original 7.0% American IPA features El Dorado and Simcoe hops. “Burnt Orange” in color, it has a substantial and complex malt profile. Powerful aromatics of tropical fruit and pine, from extensive dry hopping, will welcome you. A warm, bready malt character quickly washes away the initial bitterness, and then gives way to the resinous hops. Overall, a well balanced and full-bodied IPA with complexity in both the malt and hop profiles."
+      },
+      {
+        "name":"Coffee Milk Stout",
+        "style":"American Stout",
+        "abv":5.9,
+        "ibu":0,
+        "description":"Inspired by Cafe’ Cubano, this 5.9% American stout is brewed with lactose and Huila Acevedo coffee beans from our friends at Flat Track Coffee Roasters. The beans produce a soft, sweet, savory profile with hints of cherry that pair perfectly with the beers’ creamy texture and burnt sugar notes. Rotating seasonal coffee varieties will be used with each new batch."
+      }
+    ]
+  },
+  {
+    "id":8,
+    "name":"Jester King Brewery",
+    "address":"13187 Fitzhugh Rd",
+    "address2":null,
+    "city":"Austin",
+    "state":"TX",
+    "postalCode":"78736",
+    "latitude":30.2307165,
+    "longitude":-97.9992323,
+    "phone":"512.537.5100",
+    "taproomHours":"Friday, 12pm to 7pm\nSaturday, Noon to 7pm\nSunday, Closed\nFriday, 12-7pm\nSaturday, 12-7pm\nSunday, 12-7pm",
+    "tourHours":null,
+    "website":"http://jesterkingbrewery.com/",
+    "twitter":"@jesterkingbeer",
+    "logoUrl":"http://beerstreetjournal.com/wp-content/uploads/Jester-King-Logo1.jpg",
+    "photoUrl":"http://media.culturemap.com/crop/3f/87/633x475/Jester-King-Brewery-Hill-Country-outdoor-patio-seating_142850.jpg",
+    "beerList":[
+      {
+        "name":"Le Petit Prince",
+        "style":"Farmhouse Table Beer",
+        "abv":2.9,
+        "ibu":37,
+        "description":"Throughout Northern Europe, light-bodied, well-hopped, low alcohol table beers were often the beverage of choice with all meals at times and in places where the water wasn’t always safe to drink. Le Petit Prince is a dry, unspiced, highly attenuated Table Beer unique to our land in the Texas Hill Country. Naturally occurring wild yeasts impart a sense of place to this unfiltered, unpasteurized, 100% naturally conditioned ale."
+      },
+      {
+        "name":"Noble King",
+        "style":"Hoppy Farmhouse Ale",
+        "abv":5.8,
+        "ibu":33,
+        "description":"Noble King is a medium strength, highly attenuated, unspiced farmhouse ale brewed with an abundance of noble hops and fermented with wild yeasts from the Texas Hill Country. Unfiltered, unpasteurized, and 100% naturally conditioned."
+      },
+      {
+        "name":"Black Metal",
+        "style":"Farmhouse Imperial Stout",
+        "abv":10.8,
+        "ibu":0,
+        "description":"“It is certain that the introduction of pure yeasts into industrial fermentation does not constitute the crowning achievement of a system that is henceforth immutable. It seems, for example, that if the application of the pure cultures method has improved the average quality of the beer, if it has decreased the chances of infection, it has given us beer with less character than before.” – 20th century Belgian Brewing Scientist Marc H. Van Laer"
+      }
+    ]
   }
 ]
