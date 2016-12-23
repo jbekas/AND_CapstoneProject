@@ -1,6 +1,8 @@
 package com.redgeckotech.beerfinder.data;
 
 import android.app.IntentService;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.ContentProviderOperation;
@@ -16,7 +18,8 @@ import com.redgeckotech.beerfinder.BreweryInfoApplication;
 import com.redgeckotech.beerfinder.BuildConfig;
 import com.redgeckotech.beerfinder.R;
 import com.redgeckotech.beerfinder.api.BreweryApi;
-import com.redgeckotech.beerfinder.widget.BreweryOfTheDayRemoteViewsService;
+import com.redgeckotech.beerfinder.utils.BreweryUtils;
+import com.redgeckotech.beerfinder.view.BreweryDetailActivity;
 import com.redgeckotech.beerfinder.widget.BreweryWidgetProvider;
 
 import java.util.ArrayList;
@@ -111,7 +114,7 @@ public class UpdaterService extends IntentService {
             Brewery[] breweries = new Gson().fromJson(json, Brewery[].class);
 
             for (Brewery brewery : breweries) {
-                Timber.d(brewery.toString());
+                //Timber.d(brewery.toString());
 
                 ContentValues values = new ContentValues();
                 values.put(BreweryColumns._ID, brewery.getId());
@@ -136,36 +139,26 @@ public class UpdaterService extends IntentService {
 
             getContentResolver().applyBatch(BreweryProvider.AUTHORITY, cpo);
 
-            Intent intent = new Intent(this, BreweryWidgetProvider.class);
-            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
-            // since it seems the onUpdate() is only fired on that:
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-            ComponentName name = new ComponentName(BuildConfig.APPLICATION_ID, BreweryWidgetProvider.class.getName());
-            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(name);
+            // Update widget
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget);
 
-            //int[] ids = {widgetId};
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,appWidgetIds);
-            sendBroadcast(intent);
+            Brewery brewery = BreweryUtils.getRandomBrewery(this);
 
-            /*
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_list);
+            remoteViews.setTextViewText(R.id.brewery_name, brewery.getName());
 
-            remoteViews.setRemoteAdapter(R.id.brewery_listview,
-                    new Intent(this, BreweryOfTheDayRemoteViewsService.class));
+            Intent breweryClickIntent = new Intent(this, BreweryDetailActivity.class);
+            breweryClickIntent.putExtra("brewery", brewery);
+            PendingIntent breweryClickPendingIntent = TaskStackBuilder.create(this)
+                    .addNextIntentWithParentStack(breweryClickIntent)
+                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.brewery_name, breweryClickPendingIntent);
 
             ComponentName thisWidget = new ComponentName(this, BreweryWidgetProvider.class);
-            remoteViews.setTextViewText(R.id.my_text_view, "myText" + System.currentTimeMillis());
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
             appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-            */
         } catch (Exception e) {
             Timber.e(e, "Error updating content.");
         }
-
-//        Intent intent = new Intent();
-//        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-//        sendBroadcast(intent);
 
         sendStickyBroadcast(
                 new Intent(BROADCAST_ACTION_STATE_CHANGE).putExtra(EXTRA_REFRESHING, false));

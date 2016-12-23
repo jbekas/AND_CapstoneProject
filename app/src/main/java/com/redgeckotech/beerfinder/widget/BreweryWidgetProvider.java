@@ -9,8 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.redgeckotech.beerfinder.BuildConfig;
 import com.redgeckotech.beerfinder.R;
+import com.redgeckotech.beerfinder.data.Brewery;
+import com.redgeckotech.beerfinder.utils.BreweryUtils;
 import com.redgeckotech.beerfinder.view.BreweryDetailActivity;
 import com.redgeckotech.beerfinder.view.MainActivity;
 
@@ -20,27 +21,28 @@ public class BreweryWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        Timber.d("onUpdate called.");
-
         for (int appWidgetId : appWidgetIds) {
-            Timber.d("appWidgetId: %d", appWidgetId);
 
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_list);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
             // Create intent to launch MainActivity
             Intent titleClickIntent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, titleClickIntent, 0);
             views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
-            views.setRemoteAdapter(R.id.brewery_listview,
-                    new Intent(context, BreweryOfTheDayRemoteViewsService.class));
+            Brewery brewery = BreweryUtils.getRandomBrewery(context);
 
-            // Set up collection items
-            Intent breweryClickIntent = new Intent(context, BreweryDetailActivity.class);
-            PendingIntent breweryClickPendingIntent = TaskStackBuilder.create(context)
-                    .addNextIntentWithParentStack(breweryClickIntent)
-                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setPendingIntentTemplate(R.id.brewery_listview, breweryClickPendingIntent);
+            if (brewery != null) {
+                views.setTextViewText(R.id.brewery_name, brewery.getName());
+
+                Intent breweryClickIntent = new Intent(context, BreweryDetailActivity.class);
+                breweryClickIntent.putExtra("brewery", brewery);
+                PendingIntent breweryClickPendingIntent = TaskStackBuilder.create(context)
+                        .addNextIntentWithParentStack(breweryClickIntent)
+                        .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                views.setOnClickPendingIntent(R.id.brewery_name, breweryClickPendingIntent);
+                views.setPendingIntentTemplate(R.id.brewery_name, breweryClickPendingIntent);
+            }
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }

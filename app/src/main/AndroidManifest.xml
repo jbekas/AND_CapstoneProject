@@ -46,11 +46,6 @@
                 android:resource="@xml/brewery_widget_info"/>
         </receiver>
 
-        <service
-            android:name=".widget.BreweryOfTheDayRemoteViewsService"
-            android:exported="false"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAnn3OKD3s9RcVYwfH78a5BFpIOTeyn6RU"/>
